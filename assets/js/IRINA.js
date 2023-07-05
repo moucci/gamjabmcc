@@ -1,4 +1,6 @@
+//////////// nom de joueur///////////////
 let player;
+
 
 /**
  * get player in storage
@@ -6,8 +8,10 @@ let player;
  */
 let playerInStorage = localStorage.getItem('player');
 
+
+
 /**
- * définir le jouer par defautfr_FR
+
  * qui se trouve dans le storage ou cree un nouveau
  */
 if (playerInStorage === null) {
@@ -34,6 +38,7 @@ let input = document.querySelector(".Pseudo");
 * @type {Element}
 */
 const btn_stylo = document.querySelector("#btn_edit_login");
+
 
 //set player name in input
 input.value = player.name;
@@ -77,3 +82,67 @@ function updateUserInStorage() {
     localStorage.player = JSON.stringify(player);
 }
 
+
+
+////////////////////// score///////////////////
+
+
+// document.querySelector('.Score').textContent = player.score;
+
+// document.querySelector('.Nom').textContent = player.name;
+
+let scoresInStorage = localStorage.scores;
+function addScoreStorage() {
+    if (scoresInStorage === null) {
+        scores = []
+
+        scores.push(player);
+        //save data in storage
+        localStorage.scores = JSON.stringify(scores);
+
+
+    } else {
+        let scores = localStorage.scores;
+
+        scores = JSON.parse(scores);
+
+        scores.push(player);
+        localStorage.scores = JSON.stringify(scores);
+
+    }
+
+
+
+}
+
+addScoreStorage()
+
+
+// Récupérer les données des joueurs depuis le stockage local
+let playersInStorage = JSON.parse(localStorage.getItem('scores')) || [];
+
+// Sélectionner l'élément du corps du tableau
+const tableBody = document.querySelector('#playersTable tbody');
+
+// Générer les lignes du tableau
+for (let i = 0; i < playersInStorage.length; i++) {
+    const player = playersInStorage[i];
+
+    // Créer une nouvelle ligne
+    const row = document.createElement('tr');
+
+    // Créer une cellule pour le nom du joueur
+    const nameCell = document.createElement('td');
+    nameCell.textContent = player.name;
+
+    // Créer une cellule pour le score du joueur
+    const scoreCell = document.createElement('td');
+    scoreCell.textContent = player.score;
+
+    // Ajouter les cellules à la ligne
+    row.appendChild(nameCell);
+    row.appendChild(scoreCell);
+
+    // Ajouter la ligne au corps du tableau
+    tableBody.appendChild(row);
+}
