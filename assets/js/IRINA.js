@@ -98,9 +98,9 @@ function addScoreStorage() {
 
 
     } else {
-        let scores = localStorage.scores;
+        let scores = localStorage.player;
 
-        scores = JSON.parse(scores);
+        scores = JSON.parse(player);
 
         scores.push(player);
         scores.unshift(player);
@@ -111,15 +111,15 @@ function addScoreStorage() {
             scores.pop();
         }
 
-        localStorage.scores = JSON.stringify(scores);
+        localStorage.scores = JSON.stringify(player);
     }
 }
 
-addScoreStorage()
+// addScoreStorage();
 
 
 
-let playersInStorage = JSON.parse(localStorage.getItem('scores')) || [];
+let playersInStorage = JSON.parse(localStorage.getItem('player')) || [];
 
 // Sélectionner l'élément du corps du tableau
 const tableBody = document.querySelector('#playersTable tbody');
