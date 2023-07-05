@@ -77,3 +77,31 @@ function updateUserInStorage() {
     localStorage.player = JSON.stringify(player);
 }
 
+
+
+var scores = [
+    { nom: "test", score: 46554654645 },
+    { nom: "Jane Smith", score: 4465 },
+    { nom: "Bob Johnson", score: 365464 }
+  ];
+
+
+function addScoresToTable(scores) {
+    var tbody = document.getElementById('score');
+
+    for (var i = 0; i < scores.length; i++) {
+        var row = document.createElement('tr');
+        var playerCell = document.createElement('td');
+        var scoreCell = document.createElement('td');
+
+        playerCell.textContent = scores[i].nom;
+        scoreCell.textContent = scores[i].score;
+
+        row.appendChild(playerCell);
+        row.appendChild(scoreCell);
+        tbody.appendChild(row);
+      }
+    }
+
+    addScoresToTable(scores);
+

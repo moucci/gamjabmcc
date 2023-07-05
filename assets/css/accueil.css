@@ -20,7 +20,7 @@
   padding: 20px 0;
 }
 
-#accueil .score {
+#accueil #score {
   border: solid 2px;
   width: 80%;
   height: 60%;
