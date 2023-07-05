@@ -80,7 +80,7 @@ function updateUserInStorage() {
 
 
 var scores = [
-    { nom: "test", score: 46554654645 },
+    { nom: "corentin gaming", score: 66666 },
     { nom: "Jane Smith", score: 4465 },
     { nom: "Bob Johnson", score: 365464 }
   ];
@@ -104,4 +104,3 @@ function addScoresToTable(scores) {
     }
 
     addScoresToTable(scores);
-
