@@ -87,10 +87,6 @@ function updateUserInStorage() {
 ////////////////////// score///////////////////
 
 
-// document.querySelector('.Score').textContent = player.score;
-
-// document.querySelector('.Nom').textContent = player.name;
-
 let scoresInStorage = localStorage.scores;
 function addScoreStorage() {
     if (scoresInStorage === null) {
@@ -107,18 +103,22 @@ function addScoreStorage() {
         scores = JSON.parse(scores);
 
         scores.push(player);
+        scores.unshift(player);
+        if (scores.length > 10) {
+            scores = scores.slice(0, 10);
+        }
+        if (scores.length > 10) {
+            scores.pop();
+        }
+
         localStorage.scores = JSON.stringify(scores);
-
     }
-
-
-
 }
 
 addScoreStorage()
 
 
-// Récupérer les données des joueurs depuis le stockage local
+
 let playersInStorage = JSON.parse(localStorage.getItem('scores')) || [];
 
 // Sélectionner l'élément du corps du tableau
@@ -146,3 +146,20 @@ for (let i = 0; i < playersInStorage.length; i++) {
     // Ajouter la ligne au corps du tableau
     tableBody.appendChild(row);
 }
+
+
+/////////////////// button ///////////////////
+const btnValider = document.querySelector('.btn');
+
+// Activer le bouton "Valider" et rediriger vers une autre page
+btnValider.addEventListener('click', function () {
+    // Vérifier si le nom du joueur est valide (non vide)
+    if (input.value.trim() !== '') {
+        // Mettre à jour le nom du joueur
+        player.name = input.value;
+        // Sauvegarder les données du joueur dans le stockage
+        updateUserInStorage();
+        // Rediriger vers une autre page
+        window.location.href = 'index.html';
+    }
+});
