@@ -1,0 +1,37 @@
+#accueil {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#accueil .btn {
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.25), inset 8px 8px 8px rgba(255, 255, 255, 0.25), inset -8px -8px 8px rgba(0, 0, 0, 0.25);
+  background-color: #6A5AE0;
+  text-align: center;
+  color: white;
+  border-style: none;
+  font-size: 20px;
+  width: 50%;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px 0;
+}
+
+.btn::-moz-placeholder {
+  color: white;
+}
+
+.btn::placeholder {
+  color: white;
+}
+
+.btn:active {
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.25), inset -8px -8px 8px rgba(255, 255, 255, 0.25), inset 8px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+#accueil .score {
+  border: solid 2px;
+  width: 80%;
+  height: 60%;
+}/*# sourceMappingURL=accueil.css.map */
