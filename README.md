@@ -1,1 +1,21 @@
-# gamjabmcc
+# DragonSky
+
+Bienvenue dans DragonSky, un jeu palpitant où vous incarnez un dragon devant survivre à une pluie de météorites ! 
+
+
+Votre objectif est de rester en vie et d'éviter les obstacles jusqu'à ce que le temps imparti s'écoule.
+
+Lorsque vous consommez un mouton, vous restaurez 5 points de vie et obtenez 50 points supplémentaires pour votre score.
+
+
+Si vous entrez en collision avec une météorite de petite taille, vous subissez une diminution de 10 points de vie. 
+
+En revanche, si vous entrez en collision avec une météorite de grande taille, vous subissez une diminution de 20 points de vie. 
+
+Chaque fois que vous récupérez des pièces, votre score augmente.
+
+Soyez prudent, car si votre total de points de vie atteint 0, vous serez éliminé du jeu.
+
+Chaque niveau présente des défis de plus en plus difficiles, et si vous réussissez à atteindre le prochain niveau, la complexité augmentera. Soyez rapide, réactif et gardez votre sang-froid pour progresser dans ce jeu captivant ! Bonne chance !
+
+Préparez-vous à voler dans les cieux et à survivre à la pluie de météorites dans DragonSky !

@@ -7,10 +7,11 @@ body{
 
 .menu {
     position: fixed;
+    display: block;
     bottom: 20px;
     left: 20px;
-    width: 240px; /* Modifier la taille du div */
-    height: 140px; /* Modifier la taille du div */
+    width: 200px; /* Modifier la taille du div */
+    height: 100px; /* Modifier la taille du div */
     opacity: 0;
     cursor: pointer;
   }
