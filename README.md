@@ -5,6 +5,8 @@ Bienvenue dans DragonSky, un jeu palpitant où vous incarnez un dragon devant su
 
 Votre but est de survivre et d'éviter les obstacles pendant 30 secondes. Une fois ce délai écoulé, le niveau de difficulté augmentera, mais vous conserverez vos points de vie et votre score du niveau précédent.
 
+Le jeu est exclusivement conçu pour être joué sur un navigateur dans un format d'affichage 16:9.
+
 Lorsque vous consommez un mouton, vous restaurez 5 points de vie et obtenez 50 points supplémentaires pour votre score.
 
 
