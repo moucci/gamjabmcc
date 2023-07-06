@@ -1,0 +1,26 @@
+@charset "UTF-8";
+body {
+  background-image: url("../img/win.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.menu {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 240px; /* Modifier la taille du div */
+  height: 140px; /* Modifier la taille du div */
+  opacity: 0;
+  cursor: pointer;
+}
+
+.continue {
+  position: absolute;
+  top: 10px; /* Modifier la valeur selon l'emplacement souhaité */
+  left: 20px; /* Modifier la valeur selon l'emplacement souhaité */
+  width: 20px; /* Modifier la taille du div */
+  height: 20px; /* Modifier la taille du div */
+  opacity: 0;
+  cursor: pointer;
+}/*# sourceMappingURL=win.css.map */
