@@ -101,14 +101,13 @@ export default class Game {
     /**
      * @maxTime : maximum time limit per seconde
      */
-    maxTime = 30;
+    maxTime = 10;
 
     /**
      * @countTime : Number => seconde number under timer graph
      */
     countTime = 0;
-
-
+    q
     /**
      * reference on interval timer
      */
@@ -292,14 +291,17 @@ export default class Game {
         document.querySelectorAll(".small-rock").forEach(function ($el) {
             $el.remove();
         })
-
-
         this.rocks = {}
+        this.pv = 100;
+        this.setDragonPosition();
         this.stop_timer();
         document.querySelector('header').hide();
         document.querySelectorAll("section").forEach(function ($el) {
             $el.hide();
-        })
+        });
+        //save score
+        this.updateListScoreInStorage()
+
         //if lose reset all params
         if (!process) {
             document.querySelector("section#lose").show()
@@ -359,7 +361,7 @@ export default class Game {
                 positions = this.getRandomDirection();
             }
 
-            const speed = (!isGoat && !isGold) ? ( Math.random() * ( 5 + this.difficulty)) + 1 : 6 ;
+            const speed = (!isGoat && !isGold) ? (Math.random() * (5 + this.difficulty)) + 1 : 6;
 
             const refEl = {
                 id: id,
@@ -400,6 +402,7 @@ export default class Game {
     updatePositionRocks = () => {
         for (let id in this.rocks) {
             let rock = this.rocks[id];
+            if (!rock.x) break;
             rock.x += rock.positions.dx * rock.speed;
             rock.y += rock.positions.dy * rock.speed;
 
@@ -666,6 +669,27 @@ export default class Game {
         this.audioPlayGold = new Audio('assets/songs/gold.mp3');
         this.audioPlayGold.loop = false;
         this.audioPlayGold.play();
+    }
+
+    /**
+     * Methode tu update score on storage
+     */
+    updateListScoreInStorage() {
+        //update score
+        let player = JSON.parse(localStorage.player)
+
+        //save if this.score is >
+        if (this.score < parseInt(player.score)) return false;
+
+        player.score = this.score;
+        let listStorage = JSON.parse(localStorage.scores);
+        listStorage.forEach((value, k) => {
+            if (value.id === value.id) {
+                listStorage[k].score = player.score;
+            }
+        });
+        localStorage.scores = JSON.stringify(listStorage);
+        localStorage.player = JSON.stringify(player);
     }
 
 }
