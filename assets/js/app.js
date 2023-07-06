@@ -1,0 +1,121 @@
+/**
+ * @import class game
+ */
+import Game from './game.js';
+
+/**
+ * Get $element dron
+ * @type {Element}
+ */
+const $dragon = document.querySelector("#dragon");
+let game = new Game();
+
+
+/**
+ * methode to hide html element
+ * add function hide to prototype htmlelement
+ */
+HTMLElement.prototype.hide = function () {
+    this.style.display = 'none';
+    return this
+}
+/**
+ * methode To show html element
+ * add function show to prototype htmlelement
+ * @param param {string}
+ */
+HTMLElement.prototype.show = function (param = 'block') {
+    this.style.display = param;
+    return this
+}
+
+/**
+ * Genarate random size
+ * @return {{width: number, height: number}}
+ */
+function getRandomSize() {
+    const minWidth = 100;
+    const maxWidth = 200;
+    const minHeight = 80;
+    const maxHeight = 160;
+    const width = Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth;
+    const height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+    return {width, height};
+}
+
+/**
+ * generate random position for cloud
+ * @return {{x: number, y: number}}
+ */
+function getRandomPosition() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const positionMin = 100;
+    const positionMaxX = screenWidth - 100;
+    const positionMaxY = screenHeight - 100;
+    const x = Math.floor(Math.random() * (positionMaxX - positionMin + 1)) + positionMin;
+    const y = Math.floor(Math.random() * (positionMaxY - positionMin + 1)) + positionMin;
+    return {x, y};
+}
+
+const cloudTypes = ['a', 'b', 'c'];
+const numClouds = 40;
+const screenWidth = window.innerWidth;
+const positionMaxX = Math.floor(screenWidth / 2) - 100;
+/**
+ * generate clouds
+ */
+for (let i = 1; i <= numClouds; i++) {
+    const cloud = document.createElement('div');
+    const cloudType = cloudTypes[Math.floor(Math.random() * cloudTypes.length)];
+    cloud.classList.add(`cloud-${cloudType}`);
+    const cloudSize = getRandomSize();
+    const cloudPosition = getRandomPosition();
+
+    // Adjust cloud position based on its index
+    const offset = (i % 2 === 0) ? positionMaxX : -positionMaxX;
+    const x = cloudPosition.x + offset;
+    const y = cloudPosition.y;
+
+    cloud.style.width = `${cloudSize.width}px`;
+    cloud.style.height = `${cloudSize.height}px`;
+    cloud.style.top = `${y}px`;
+    cloud.style.left = `${x}px`;
+    cloud.classList.add(`cloud-${cloudType}`, 'cloud-animate');
+    document.querySelector('#game').appendChild(cloud);
+}
+
+
+/**
+ * bind btn play
+ */
+document.querySelectorAll('.btn-play').forEach(function ($el) {
+    $el.addEventListener("click", function () {
+        document.querySelector("#home").hide();
+        document.querySelector("#game").show();
+        game.start(1);
+    })
+});
+
+/**
+ * bind btn to home
+ */
+document.querySelectorAll('.btn-home').forEach(function ($el) {
+    $el.addEventListener("click", function () {
+        document.querySelectorAll("section").forEach(function ($el) {
+            $el.hide();
+        });
+        document.querySelector("#home").show();
+        // game.start();
+    })
+});
+
+/**
+ * bind btn next to change level
+ */
+document.querySelector('.btn-next').addEventListener("click" , ()=>{
+    document.querySelector("#win").hide();
+    document.querySelector("#game").show();
+    game.start(game.difficulty+0.20) ;
+});
+

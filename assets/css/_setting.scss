@@ -1,1 +1,102 @@
-$colorOne : red ;
+
+
+$colorOne : #58b5ea;
+$colorDanger : red ;
+$colorTxt : white ;
+
+//animation  timer starting
+@keyframes animateStarting {
+  0% {
+    font-size: 30px;
+  }
+  50% {
+    font-size: 100px;
+  }
+  100% {
+    font-size: 30px;
+  }
+}
+
+//animation left wing
+@keyframes animateLeftWing {
+  0% {
+    transform: rotate(10deg) translateX(0);
+  }
+  50% {
+    transform: rotate(-25deg) translateX(20px);
+  }
+  100% {
+    transform: rotate(10deg) translateX(0);
+  }
+}
+
+//animation right wing
+@keyframes animateRightWing {
+  0% {
+    transform: rotate(-10deg) translateX(0);
+  }
+  50% {
+    transform: rotate(25deg) translateX(-20px);
+  }
+  100% {
+    transform: rotate(-10deg) translateX(0);
+  }
+}
+
+//animation pile face
+@keyframes flipY {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+}
+
+
+/**
+  animation zoom in zoom
+ */
+@keyframes zoom-in-zoom-level-1 {
+  0% {
+    transform: scale(0.8, 0.8);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.8, 0.8);
+  }
+}
+
+/**
+  animation ratate any element
+ */
+@keyframes rotate-infinite {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+// for timer
+.rotate-infinite {
+  animation: rotate-infinite 2s linear infinite;
+}
+//animate cloud
+@keyframes cloudAnimation {
+  0% {
+    transform: translateX(100%);
+  }
+  50%{
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
