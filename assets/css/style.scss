@@ -1,9 +1,18 @@
 @import "setting";
 
-* {
-  box-sizing: border-box;
+@font-face {
+  font-family: "cinzel";
+  src: url("/assets/fonts/CinzelDecorative-Black.ttf");
+  src: url("/assets/fonts/CinzelDecorative-Bold.ttf");
+  src: url("/assets/fonts/CinzelDecorative-Regular.ttf");
 }
 
+* {
+  //font-family: "Dinomouse", "roboto", "sans-serif";
+  font-family: cinzel, "roboto", "sans-serif";
+  //font-weight: 100;
+  box-sizing: border-box;
+}
 body {
   background-color: $colorOne;
   margin: 0;
@@ -172,6 +181,7 @@ body {
           justify-content: space-between;
           align-items: center;
           padding: 0 20px;
+          color: white;
 
           .last-score, .list-score {
             font-size: 18px;
@@ -202,6 +212,10 @@ body {
             text-align: center;
             margin: 0 20px;
           }
+          label{
+            font-weight: bold;
+            color: white;
+          }
 
           button {
             padding: 0 30px;
@@ -210,6 +224,21 @@ body {
             box-shadow: none;
             font-weight: bold;
             height: 30px;
+          }
+
+          .btn-play{
+            font-weight: bold;
+            color: white;
+            border: 2px solid white;
+            max-width: 200px;
+            margin: 0 auto;
+            margin: 0 auto;
+            border-radius: 25px;
+            flex: 1;
+            width: 25%;
+            &:active{
+              background-color: rgba(255, 255, 255, 0.2);
+            }
           }
         }
 
@@ -244,6 +273,9 @@ body {
 
             p {
               color: white;
+              font-weight: bold;
+              font-size: 14px;
+
             }
           }
         }
@@ -393,27 +425,100 @@ body {
     section#lose {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       overflow: hidden;
       display: none;
+      background-image: url(/assets/img/lose.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-color: #411d0c;
 
       .btn-play, .btn-home {
         display: block;
+        position: absolute;
+        bottom: 180px;
+        right: 20px;
+        width: 230px;
+        height: 60px;
+        &:active , &:hover{
+          cursor: pointer;
+        }
       }
+
+      .btn-play{
+        bottom: 240px;
+      }
+
+
+
     }
 
     section#win {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       overflow: hidden;
       display: none;
+      background-image: url(/assets/img/win.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-color: #411d0c;
 
-      .btn-play, .btn-home {
+      .btn-next,.btn-home  {
         display: block;
+        position: absolute;
+        width: 250px;
+        height: 130px;
+        &:active , &:hover{
+          cursor: pointer;
+        }
       }
+
+      .btn-next{
+        bottom: 210px;
+        right: 40px;
+      }
+
+      .btn-home{
+        bottom: 205px;
+        left: 70px;
+      }
+
+
+
     }
 
+    section#list-score{
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      .card {
+        width: 95vw;
+        max-width: 900px;
+        height: 80vh;
+        background-image: url(/assets/img/card.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .header {
+
+          padding: 0 20px;
+          color: white;
+
+          h1 {
+            text-align: center;
+          }
+
+        }
+
+      }
+
+    }
 
     .cloud-a,
     .cloud-b,

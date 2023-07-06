@@ -210,7 +210,9 @@ for (let i = 1; i <= numClouds; i++) {
     //for home
     if (i < 30) {
         let clone = cloud.cloneNode();
+        let cloudB = clone;
         document.querySelector('#home').appendChild(clone);
+        document.querySelector('#list-score').appendChild(cloudB);
     }
 }
 
@@ -238,7 +240,7 @@ document.querySelectorAll('.btn-home').forEach(function ($el) {
         });
 
         document.querySelector("#home").show();
-        let scores  = JSON.parse(localStorage.scores);
+        let scores = JSON.parse(localStorage.scores);
         //trier
         let sortedPlayers = sortByScoreDescending(scores);
         //if we have score push it to el
@@ -246,6 +248,42 @@ document.querySelectorAll('.btn-home').forEach(function ($el) {
             document.querySelector('.last-score').innerText = 'Score à battre: ' + sortedPlayers[0].score;
 
 
+    })
+});
+
+function listScoreOnView() {
+    let scores = JSON.parse(localStorage.scores);
+    //trier
+    let sortedPlayers = sortByScoreDescending(scores);
+    //if we have score push it to el
+    if (sortedPlayers.length > 0 && sortedPlayers[0].score > 0)
+        document.querySelector('.last-score').innerText = 'Score à battre: ' + sortedPlayers[0].score;
+
+    let container = document.querySelector('#list-score ul');
+    container.innerHTML = '';
+    sortedPlayers.forEach((value) => {
+        let $li = document.createElement('li');
+        let $spanName = document.createElement('span');
+        $spanName.classList.add('name');
+        let $spanScore= document.createElement('span');
+        $spanScore.classList.add('score');
+
+        $li.insertAdjacentElement($spanName);
+        $li.insertAdjacentElement($spanScore);
+
+        container.insertAdjacentElement($li)
+
+    })
+}
+
+document.querySelectorAll('.btn-list').forEach(function ($el) {
+
+    $el.addEventListener("click", function () {
+        document.querySelectorAll("section").forEach(function ($el) {
+            $el.hide();
+        });
+        document.querySelector("#list-score").show();
+        listScoreOnView();
     })
 });
 
@@ -257,5 +295,6 @@ document.querySelector('.btn-next').addEventListener("click", () => {
     document.querySelector("#game").show();
     game.start(game.difficulty + 0.5);
 });
+listScoreOnView();
 
 

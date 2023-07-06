@@ -35,17 +35,17 @@
 </header>
 <main>
 
-    <section id="home">
+    <section id="home" style="display: none">
         <div class="card">
             <div class="header">
                 <span class="last-score"></span></span>
                 <h1>Dragon Sky</h1>
-                <span class="list-score">liste des scores</span>
+                <span class="btn-list">liste des scores</span>
             </div>
             <div class="form">
                 <div>
                     <label for="login">Pseudo</label>
-                    <input type="text" id="login">
+                    <input  placeholder="Login" type="text" id="login">
                     <button class="btn-submit">Valider</button>
                 </div>
                 <span class="btn-play">C'est Parti</span>
@@ -73,15 +73,19 @@
         </div>
     </section>
     <section id="game"></section>
-    <section id="win">
-        <h1>win</h1>
-        <span class="btn-next">Niveau Suivant</span>
-        <span class="btn-home">FINI</span>
+    <section id="win" >
+        <span class="btn-next"></span>
+        <span class="btn-home"></span>
     </section>
-    <section id="lose">
-        <h1>lose</h1>
-        <span class="btn-play">Retry</span>
-        <span class="btn-home">FINI</span>
+    <section id="lose" >
+        <span class="btn-play"></span>
+        <span class="btn-home"></span>
+    </section>
+    <section id="list-score" style="display: block" >
+        <div class="card">
+            <div class="header"><h1>SCORES</h1></div>
+            <ul></ul>
+        </div>
     </section>
 
 </main>

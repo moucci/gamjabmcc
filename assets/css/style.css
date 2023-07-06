@@ -82,7 +82,14 @@
     transform: translateX(100%);
   }
 }
+@font-face {
+  font-family: "cinzel";
+  src: url("/assets/fonts/CinzelDecorative-Black.ttf");
+  src: url("/assets/fonts/CinzelDecorative-Bold.ttf");
+  src: url("/assets/fonts/CinzelDecorative-Regular.ttf");
+}
 * {
+  font-family: cinzel, "roboto", "sans-serif";
   box-sizing: border-box;
 }
 
@@ -227,6 +234,7 @@ body main section#home .card .header {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  color: white;
 }
 body main section#home .card .header .last-score, body main section#home .card .header .list-score {
   font-size: 18px;
@@ -252,6 +260,10 @@ body main section#home .card .form input {
   text-align: center;
   margin: 0 20px;
 }
+body main section#home .card .form label {
+  font-weight: bold;
+  color: white;
+}
 body main section#home .card .form button {
   padding: 0 30px;
   border-radius: 25px;
@@ -259,6 +271,20 @@ body main section#home .card .form button {
   box-shadow: none;
   font-weight: bold;
   height: 30px;
+}
+body main section#home .card .form .btn-play {
+  font-weight: bold;
+  color: white;
+  border: 2px solid white;
+  max-width: 200px;
+  margin: 0 auto;
+  margin: 0 auto;
+  border-radius: 25px;
+  flex: 1;
+  width: 25%;
+}
+body main section#home .card .form .btn-play:active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 body main section#home .card .slug {
   padding: 20px;
@@ -289,6 +315,8 @@ body main section#home .card .rules div img:nth-child(1) {
 }
 body main section#home .card .rules div p {
   color: white;
+  font-weight: bold;
+  font-size: 14px;
 }
 body main section#game {
   display: none;
@@ -401,22 +429,80 @@ body main section#game .gold {
 body main section#lose {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   display: none;
+  background-image: url(/assets/img/lose.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: #411d0c;
 }
 body main section#lose .btn-play, body main section#lose .btn-home {
   display: block;
+  position: absolute;
+  bottom: 180px;
+  right: 20px;
+  width: 230px;
+  height: 60px;
+}
+body main section#lose .btn-play:active, body main section#lose .btn-play:hover, body main section#lose .btn-home:active, body main section#lose .btn-home:hover {
+  cursor: pointer;
+}
+body main section#lose .btn-play {
+  bottom: 240px;
 }
 body main section#win {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   display: none;
+  background-image: url(/assets/img/win.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: #411d0c;
 }
-body main section#win .btn-play, body main section#win .btn-home {
+body main section#win .btn-next, body main section#win .btn-home {
   display: block;
+  position: absolute;
+  width: 250px;
+  height: 130px;
+}
+body main section#win .btn-next:active, body main section#win .btn-next:hover, body main section#win .btn-home:active, body main section#win .btn-home:hover {
+  cursor: pointer;
+}
+body main section#win .btn-next {
+  bottom: 210px;
+  right: 40px;
+}
+body main section#win .btn-home {
+  bottom: 205px;
+  left: 70px;
+}
+body main section#list-score {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+body main section#list-score .card {
+  width: 95vw;
+  max-width: 900px;
+  height: 80vh;
+  background-image: url(/assets/img/card.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+body main section#list-score .card .header {
+  padding: 0 20px;
+  color: white;
+}
+body main section#list-score .card .header h1 {
+  text-align: center;
 }
 body main .cloud-a,
 body main .cloud-b,
