@@ -1,3 +1,20 @@
+@font-face {
+    font-family: "cambridge";
+    src: url("/assets/fonts/Cambridge.ttf");
+    src: url("/assets/fonts/Cambridge.otf");
+  }
+
+  @font-face {
+    font-family: "cinzel";
+    src: url("/assets/fonts/CinzelDecorative-Black.ttf");
+    src: url("/assets/fonts/CinzelDecorative-Bold.ttf");
+    src: url("/assets/fonts/CinzelDecorative-Regular.ttf");
+  }
+
+  h1{
+    font-family: cambridge;
+  }
+
 body{
     background-image: linear-gradient(rgb(93, 93, 212),rgb(16, 223, 223));
     background-repeat: no-repeat;
@@ -34,7 +51,7 @@ body{
 #accueil #score{
 
     border: solid 2px;
-    width: 60%;
+    width: 20%;
     height: 60%;
     display: flex;
     flex-direction: column;
@@ -84,8 +101,8 @@ body{
 	-moz-border-radius: 200px;
 }
 
-.cloud{
+img{
 
-    text-align: center;
+    width: 70px;
+    height: 70px;
 }
-
