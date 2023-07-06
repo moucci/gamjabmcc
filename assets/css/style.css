@@ -1,3 +1,444 @@
+@keyframes animateStarting {
+  0% {
+    font-size: 30px;
+  }
+  50% {
+    font-size: 100px;
+  }
+  100% {
+    font-size: 30px;
+  }
+}
+@keyframes animateLeftWing {
+  0% {
+    transform: rotate(10deg) translateX(0);
+  }
+  50% {
+    transform: rotate(-25deg) translateX(20px);
+  }
+  100% {
+    transform: rotate(10deg) translateX(0);
+  }
+}
+@keyframes animateRightWing {
+  0% {
+    transform: rotate(-10deg) translateX(0);
+  }
+  50% {
+    transform: rotate(25deg) translateX(-20px);
+  }
+  100% {
+    transform: rotate(-10deg) translateX(0);
+  }
+}
+@keyframes flipY {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+}
+/**
+  animation zoom in zoom
+ */
+@keyframes zoom-in-zoom-level-1 {
+  0% {
+    transform: scale(0.8, 0.8);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.8, 0.8);
+  }
+}
+/**
+  animation ratate any element
+ */
+@keyframes rotate-infinite {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotate-infinite {
+  animation: rotate-infinite 2s linear infinite;
+}
+
+@keyframes cloudAnimation {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
 body {
+  background-color: #58b5ea;
+  margin: 0;
+  padding: 0;
+}
+body header {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  height: 100px;
+  top: 0;
+  padding: 10px;
+  width: 100vw;
+}
+body header .life {
+  width: 30vw;
+}
+body header .life p {
+  color: white;
+  display: block;
+  text-align: center;
+}
+body header .life .pv {
+  border: 3px solid white;
+  border-radius: 40px;
+  width: 100%;
+  position: relative;
+  height: 30px;
+  position: relative;
+}
+body header .life .pv div {
+  position: absolute;
+  top: 0;
   background-color: red;
-}/*# sourceMappingURL=style.css.map */
+  height: 100%;
+  border-radius: 40px;
+}
+body header .timer-bg {
+  margin-top: 130px;
+  background-image: url("/assets/img/timer-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center -30px;
+}
+body header .timer-bg .timer {
+  text-align: center;
+  color: #E2F500;
+  padding: 110px 20px 20px;
+}
+body header .timer-bg .timer .timer-graphic {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  background-color: #FFDB01;
+  position: relative;
+  animation: zoom-in-zoom-level-1 30s ease infinite;
+}
+body header .timer-bg .timer .timer-graphic:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: darkred;
+  z-index: 10;
+}
+body header .timer-bg .timer .timer-graphic .arrow {
+  clip-path: polygon(46.98% 25.17%, 100% 50%, 60% 50%, 60% 100%, 40% 100%, 40% 50%, 0% 50%);
+  position: absolute;
+  width: 12px;
+  height: 42px;
+  top: -10px;
+  left: 28px;
+  background: darkred;
+  transform-origin: 50% 43px;
+  transform: rotate(0deg);
+  z-index: 10;
+}
+body header .timer-bg .timer .timer-graphic .circle {
+  width: 70px;
+  height: 70px;
+  border: 2px solid black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: repeating-conic-gradient(from 0deg, #343434 0deg 0deg, #FFD005 0deg 360deg);
+}
+body header .timer-bg .timer .timer-seconde {
+  padding-top: 20px;
+  display: inline-block;
+}
+body header .score {
+  width: 30vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+body header .score p:first-child {
+  color: white;
+  font-size: 18px;
+  margin: 0;
+}
+body header .score p:last-child {
+  color: red;
+  font-size: 30px;
+  margin: 0;
+}
+body main {
+  width: 100vw;
+  height: calc(100vh - 100px);
+}
+body main section#home {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 100px;
+}
+body main section#home .card {
+  width: 95vw;
+  max-width: 900px;
+  height: 80vh;
+  background-image: url(/assets/img/card.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+body main section#home .card .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+body main section#home .card .header .last-score, body main section#home .card .header .list-score {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 100px;
+}
+body main section#home .card .header h1 {
+  text-align: center;
+}
+body main section#home .card .form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+  line-height: 40px;
+}
+body main section#home .card .form input {
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  margin: 0 20px;
+}
+body main section#home .card .form button {
+  padding: 0 30px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: none;
+  font-weight: bold;
+  height: 30px;
+}
+body main section#home .card .slug {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+body main section#home .card .rules {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  position: relative;
+}
+body main section#home .card .rules div {
+  width: 25%;
+  text-align: center;
+}
+body main section#home .card .rules div img {
+  width: 50%;
+  max-height: 100%;
+  object-fit: contain;
+}
+body main section#home .card .rules div img:nth-child(1) {
+  max-width: 40%;
+}
+body main section#home .card .rules div p {
+  color: white;
+}
+body main section#game {
+  display: none;
+  margin-top: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body main section#game .starting {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+  animation: animateStarting 1s ease 0s;
+  animation-fill-mode: forwards;
+}
+body main section#game .dragon {
+  position: absolute;
+  width: 100px;
+  height: 150px;
+  transition: top 0.1s ease 0s, left 0.1s ease 0s, rotate 0.3s ease 0s;
+  background-image: url("/assets/img/dragon_b.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+body main section#game .dragon:before {
+  content: "";
+  width: 90px;
+  height: 60px;
+  background-image: url(/assets/img/dragon_l.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  position: absolute;
+  left: -53px;
+  top: 25px;
+  animation: animateLeftWing 1s infinite linear;
+  transform-origin: bottom right; /* ajuste l'origine de rotation de l'aile gauche */
+}
+body main section#game .dragon:after {
+  content: "";
+  width: 90px;
+  height: 60px;
+  background-image: url(/assets/img/dragon_r.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  position: absolute;
+  right: -53px;
+  top: 25px;
+  animation: animateRightWing 1s infinite linear;
+  transform-origin: bottom left;
+}
+body main section#game .small-rock, body main section#game .gold, body main section#game .goat, body main section#game .big-rock {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  background-image: url("/assets/img/small-rock.svg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
+@media screen and (max-width: 767px) {
+  body main section#game .small-rock, body main section#game .gold, body main section#game .goat, body main section#game .big-rock {
+    width: 50px;
+    height: 50px;
+  }
+}
+body main section#game .big-rock {
+  width: 160px;
+  height: 160px;
+  background-image: url("/assets/img/big-rock.svg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
+@media screen and (max-width: 767px) {
+  body main section#game .big-rock {
+    width: 80px;
+    height: 80px;
+  }
+}
+body main section#game .goat {
+  background-image: url("/assets/img/goat.svg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  width: 180px;
+  height: 180px;
+}
+@media screen and (max-width: 767px) {
+  body main section#game .goat {
+    width: 100px;
+    height: 100px;
+  }
+}
+body main section#game .gold {
+  background-color: gold;
+  width: 30px;
+  height: 30px;
+  background-image: url("/assets/img/coin.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: flipY 2s infinite linear;
+}
+body main section#lose {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: none;
+}
+body main section#lose .btn-play, body main section#lose .btn-home {
+  display: block;
+}
+body main section#win {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: none;
+}
+body main section#win .btn-play, body main section#win .btn-home {
+  display: block;
+}
+body main .cloud-a,
+body main .cloud-b,
+body main .cloud-c {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8;
+  z-index: -1;
+  mix-blend-mode: lighten;
+  background-repeat: no-repeat;
+}
+body main .cloud-a {
+  background-image: url("/assets/img/cloud-a.svg");
+}
+body main .cloud-b {
+  background-image: url("/assets/img/cloud-b.svg");
+}
+body main .cloud-c {
+  background-image: url("/assets/img/cloud-c.svg");
+}
+body main .cloud-animate {
+  animation: cloudAnimation 20s linear infinite;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,8 +1,449 @@
 @import "setting";
 
-body{
-   background-color: $colorOne;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $colorOne;
+  margin: 0;
+  padding: 0;
+
+  header {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    height: 100px;
+    top: 0;
+    padding: 10px;
+    width: 100vw;
+
+    .life {
+      width: 30vw;
+
+      p {
+        color: $colorTxt;
+        display: block;
+        text-align: center;
+      }
+
+      .pv {
+        border: 3px solid white;
+        border-radius: 40px;
+        width: 100%;
+        position: relative;
+        height: 30px;
+        position: relative;
+
+        div {
+          position: absolute;
+          top: 0;
+          background-color: $colorDanger;
+          //width: 90%;
+          height: 100%;
+          border-radius: 40px;
+          //display: none;
+        }
+      }
+
+    }
+
+    .timer-bg {
+      margin-top: 130px;
+      background-image: url("/assets/img/timer-bg.svg");
+      background-repeat: no-repeat;
+      background-position: center -30px;
+
+      .timer {
+        text-align: center;
+        color: #E2F500;
+        padding: 110px 20px 20px;
+
+        .timer-graphic {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          border: 2px solid #000000;
+          background-color: #FFDB01;
+          position: relative;
+          animation: zoom-in-zoom-level-1 30s ease infinite;
 
 
+          &:before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background-color: darkred;
+            z-index: 10;
+          }
+
+          .arrow {
+            clip-path: polygon(46.98% 25.17%, 100% 50%, 60% 50%, 60% 100%, 40% 100%, 40% 50%, 0% 50%);
+            position: absolute;
+            width: 12px;
+            height: 42px;
+            top: -10px;
+            left: 28px;
+            background: darkred;
+            transform-origin: 50% 43px;
+            transform: rotate(0deg);
+            z-index: 10;
+
+
+          }
+
+          .circle {
+            width: 70px;
+            height: 70px;
+            border: 2px solid black;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: repeating-conic-gradient(from 0deg, #343434 0deg 0deg, #FFD005 0deg 360deg);
+          }
+
+
+        }
+
+        .timer-seconde {
+          padding-top: 20px;
+          display: inline-block;
+        }
+
+      }
+    }
+
+
+    .score {
+      width: 30vw;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      p:first-child {
+        color: $colorTxt;
+        font-size: 18px;
+        margin: 0;
+      }
+
+      p:last-child {
+        color: red;
+        font-size: 30px;
+        margin: 0;
+
+      }
+
+    }
+  }
+
+  main {
+    width: 100vw;
+    height: calc(100vh - 100px);
+
+    section#home {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-top: 100px;
+
+      .card {
+        width: 95vw;
+        max-width: 900px;
+        height: 80vh;
+        background-image: url(/assets/img/card.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 20px;
+
+          .last-score, .list-score {
+            font-size: 18px;
+            font-weight: bold;
+            min-width: 100px;
+          }
+
+
+          h1 {
+            text-align: center;
+          }
+
+        }
+
+        .form {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          gap: 30px;
+          text-align: center;
+          line-height: 40px;
+
+          input {
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: none;
+            text-align: center;
+            margin: 0 20px;
+          }
+
+          button {
+            padding: 0 30px;
+            border-radius: 25px;
+            border: none;
+            box-shadow: none;
+            font-weight: bold;
+            height: 30px;
+          }
+        }
+
+        .slug {
+          padding: 20px;
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+          color: white;
+        }
+
+        .rules {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          align-content: flex-end;
+          position: relative;
+
+          div {
+            width: 25%;
+            text-align: center;
+
+            img {
+              width: 50%;
+              max-height: 100%; // assurez-vous que l'image ne dépasse pas le conteneur
+              object-fit: contain; // conserve l'aspect de l'image tout en la forçant à s'adapter au conteneur
+              &:nth-child(1) {
+                max-width: 40%;
+              }
+            }
+
+            p {
+              color: white;
+            }
+          }
+        }
+
+      }
+
+    }
+
+    section#game {
+      display: none;
+      margin-top: 100px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      //border: 2px solid black;
+
+      .starting {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+        font-size: 70px;
+        animation: animateStarting 1s ease 0s;
+        animation-fill-mode: forwards;
+      }
+
+      .dragon {
+        position: absolute;
+        //width: 20vw;
+        width: 100px;
+        height: 150px;
+        transition: top 0.1s ease 0s, left 0.1s ease 0s, rotate 0.3s ease 0s;
+
+        background-image: url('/assets/img/dragon_b.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+
+        //wings
+        &:before {
+          content: "";
+          width: 90px;
+          height: 60px;
+          background-image: url(/assets/img/dragon_l.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          display: inline-block;
+          position: absolute;
+          left: -53px;
+          top: 25px;
+          animation: animateLeftWing 1s infinite linear;
+          transform-origin: bottom right; /* ajuste l'origine de rotation de l'aile gauche */
+        }
+
+        &:after {
+          content: "";
+          width: 90px;
+          height: 60px;
+          background-image: url(/assets/img/dragon_r.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          display: inline-block;
+          position: absolute;
+          right: -53px;
+          top: 25px;
+          animation: animateRightWing 1s infinite linear;
+          transform-origin: bottom left;
+        }
+
+
+      }
+
+      .small-rock {
+        width: 90px;
+        height: 90px;
+
+        //for mobile
+        @media screen and (max-width: 767px) {
+          width: 50px;
+          height: 50px;
+        }
+
+
+        //border: 1px solid red;
+        //background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        opacity: 0;
+        background-image: url('/assets/img/small-rock.svg');
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+      }
+
+      .big-rock {
+        width: 160px;
+        height: 160px;
+
+        //for mobile
+        @media screen and (max-width: 767px) {
+          width: 80px;
+          height: 80px;
+        }
+
+
+        @extend .small-rock ;
+        background-image: url('/assets/img/big-rock.svg');
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+      }
+
+      .goat {
+        @extend .small-rock ;
+        //background-color: #26c401 ;
+        background-image: url('/assets/img/goat.svg');
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        border-radius: 0;
+        background-color: transparent;
+        border: none;
+        width: 180px;
+        height: 180px;
+        //for mobile
+        @media screen and (max-width: 767px) {
+          width: 100px;
+          height: 100px;
+        }
+
+      }
+
+      .gold {
+        @extend .small-rock ;
+        background-color: gold;
+        width: 30px;
+        height: 30px;
+
+
+        background-image: url('/assets/img/coin.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        animation: flipY 2s infinite linear;
+
+      }
+
+
+    }
+
+    section#lose {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: none;
+
+      .btn-play, .btn-home {
+        display: block;
+      }
+    }
+
+    section#win {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: none;
+
+      .btn-play, .btn-home {
+        display: block;
+      }
+    }
+
+
+    .cloud-a,
+    .cloud-b,
+    .cloud-c {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.8;
+      z-index: -1;
+      mix-blend-mode: lighten;
+      background-repeat: no-repeat;
+    }
+
+    .cloud-a {
+      background-image: url("/assets/img/cloud-a.svg");
+    }
+
+    .cloud-b {
+      background-image: url("/assets/img/cloud-b.svg");
+    }
+
+    .cloud-c {
+      background-image: url("/assets/img/cloud-c.svg");
+    }
+
+    //class animate nuange
+    .cloud-animate {
+      animation: cloudAnimation 20s linear infinite;
+    }
+
+
+  }
 
 }
