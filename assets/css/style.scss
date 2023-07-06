@@ -189,6 +189,12 @@ body {
             min-width: 100px;
           }
 
+          .btn-list{
+            &:active , &:hover{
+              cursor: pointer;
+            }
+          }
+
 
           h1 {
             text-align: center;

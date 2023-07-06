@@ -241,6 +241,9 @@ body main section#home .card .header .last-score, body main section#home .card .
   font-weight: bold;
   min-width: 100px;
 }
+body main section#home .card .header .btn-list:active, body main section#home .card .header .btn-list:hover {
+  cursor: pointer;
+}
 body main section#home .card .header h1 {
   text-align: center;
 }
