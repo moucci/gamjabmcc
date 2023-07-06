@@ -206,6 +206,89 @@ body main {
 body main section#home {
   height: 100%;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 100px;
+}
+body main section#home .card {
+  width: 95vw;
+  max-width: 900px;
+  height: 80vh;
+  background-image: url(/assets/img/card.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+body main section#home .card .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+body main section#home .card .header .last-score, body main section#home .card .header .list-score {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 100px;
+}
+body main section#home .card .header h1 {
+  text-align: center;
+}
+body main section#home .card .form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+  line-height: 40px;
+}
+body main section#home .card .form input {
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  margin: 0 20px;
+}
+body main section#home .card .form button {
+  padding: 0 30px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: none;
+  font-weight: bold;
+  height: 30px;
+}
+body main section#home .card .slug {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+body main section#home .card .rules {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  position: relative;
+}
+body main section#home .card .rules div {
+  width: 25%;
+  text-align: center;
+}
+body main section#home .card .rules div img {
+  width: 50%;
+  max-height: 100%;
+  object-fit: contain;
+}
+body main section#home .card .rules div img:nth-child(1) {
+  max-width: 40%;
+}
+body main section#home .card .rules div p {
+  color: white;
 }
 body main section#game {
   display: none;
@@ -315,25 +398,6 @@ body main section#game .gold {
   background-size: 100%;
   animation: flipY 2s infinite linear;
 }
-body main section#game .cloud-a,
-body main section#game .cloud-b,
-body main section#game .cloud-c {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.8;
-  z-index: -1;
-  mix-blend-mode: lighten;
-  background-repeat: no-repeat;
-}
-body main section#game .cloud-a {
-  background-image: url("/assets/img/cloud-a.svg");
-}
-body main section#game .cloud-b {
-  background-image: url("/assets/img/cloud-b.svg");
-}
-body main section#game .cloud-c {
-  background-image: url("/assets/img/cloud-c.svg");
-}
 body main section#lose {
   position: relative;
   width: 100%;
@@ -353,6 +417,25 @@ body main section#win {
 }
 body main section#win .btn-play, body main section#win .btn-home {
   display: block;
+}
+body main .cloud-a,
+body main .cloud-b,
+body main .cloud-c {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8;
+  z-index: -1;
+  mix-blend-mode: lighten;
+  background-repeat: no-repeat;
+}
+body main .cloud-a {
+  background-image: url("/assets/img/cloud-a.svg");
+}
+body main .cloud-b {
+  background-image: url("/assets/img/cloud-b.svg");
+}
+body main .cloud-c {
+  background-image: url("/assets/img/cloud-c.svg");
 }
 body main .cloud-animate {
   animation: cloudAnimation 20s linear infinite;

@@ -36,7 +36,41 @@
 <main>
 
     <section id="home">
-        <span class="btn-play">Play</span>
+        <div class="card">
+            <div class="header">
+                <span class="last-score"></span></span>
+                <h1>Dragon Sky</h1>
+                <span class="list-score">liste des scores</span>
+            </div>
+            <div class="form">
+                <div>
+                    <label for="login">Pseudo</label>
+                    <input type="text" id="login">
+                    <button class="btn-submit">Valider</button>
+                </div>
+                <span class="btn-play">C'est Parti</span>
+            </div>
+            <div class="slug">Les régles : Manger du Mouton, éviter les cailloux et prendre l'argent</div>
+            <div class="rules">
+                <div>
+                    <img src="/assets/img/goat.svg" alt="">
+                    <p>MANGER : +5 point de vie</p>
+                </div>
+                <div>
+                    <img src="/assets/img/small-rock.svg" alt="">
+                    <p>éviter : -10 point de vie</p>
+                </div>
+                <div>
+                    <img src="/assets/img/big-rock.svg" alt="">
+                    <p>éviter : -20 point de vie</p>
+                </div>
+                <div>
+                    <img src="/assets/img/coin.png" alt="">
+                    <p>Prendre Argent : +50 au score </p>
+                </div>
+
+            </div>
+        </div>
     </section>
     <section id="game"></section>
     <section id="win">

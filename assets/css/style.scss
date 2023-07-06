@@ -148,12 +148,109 @@ body {
     width: 100vw;
     height: calc(100vh - 100px);
 
-
-    section#home{
+    section#home {
       height: 100%;
       width: 100%;
-    }
+      position: relative;
+      overflow: hidden;
+      margin-top: 100px;
 
+      .card {
+        width: 95vw;
+        max-width: 900px;
+        height: 80vh;
+        background-image: url(/assets/img/card.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 20px;
+
+          .last-score, .list-score {
+            font-size: 18px;
+            font-weight: bold;
+            min-width: 100px;
+          }
+
+
+          h1 {
+            text-align: center;
+          }
+
+        }
+
+        .form {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          gap: 30px;
+          text-align: center;
+          line-height: 40px;
+
+          input {
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: none;
+            text-align: center;
+            margin: 0 20px;
+          }
+
+          button {
+            padding: 0 30px;
+            border-radius: 25px;
+            border: none;
+            box-shadow: none;
+            font-weight: bold;
+            height: 30px;
+          }
+        }
+
+        .slug {
+          padding: 20px;
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+          color: white;
+        }
+
+        .rules {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          align-content: flex-end;
+          position: relative;
+
+          div {
+            width: 25%;
+            text-align: center;
+
+            img {
+              width: 50%;
+              max-height: 100%; // assurez-vous que l'image ne dépasse pas le conteneur
+              object-fit: contain; // conserve l'aspect de l'image tout en la forçant à s'adapter au conteneur
+              &:nth-child(1) {
+                max-width: 40%;
+              }
+            }
+
+            p {
+              color: white;
+            }
+          }
+        }
+
+      }
+
+    }
 
     section#game {
       display: none;
@@ -290,52 +387,55 @@ body {
 
       }
 
-      .cloud-a,
-      .cloud-b,
-      .cloud-c {
-        position: absolute;
-        border-radius: 50%;
-        opacity: 0.8;
-        z-index: -1;
-        mix-blend-mode: lighten;
-        background-repeat: no-repeat;
-      }
-
-      .cloud-a {
-          background-image: url("/assets/img/cloud-a.svg");
-      }
-
-      .cloud-b {
-        background-image: url("/assets/img/cloud-b.svg");
-      }
-
-      .cloud-c {
-        background-image: url("/assets/img/cloud-c.svg");
-      }
-
 
     }
 
-    section#lose{
+    section#lose {
       position: relative;
       width: 100%;
       height: 100%;
       overflow: hidden;
       display: none;
 
-        .btn-play , .btn-home{
-          display: block;
-        }
+      .btn-play, .btn-home {
+        display: block;
+      }
     }
-    section#win{
+
+    section#win {
       position: relative;
       width: 100%;
       height: 100%;
       overflow: hidden;
       display: none;
-        .btn-play , .btn-home{
-          display: block;
-        }
+
+      .btn-play, .btn-home {
+        display: block;
+      }
+    }
+
+
+    .cloud-a,
+    .cloud-b,
+    .cloud-c {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.8;
+      z-index: -1;
+      mix-blend-mode: lighten;
+      background-repeat: no-repeat;
+    }
+
+    .cloud-a {
+      background-image: url("/assets/img/cloud-a.svg");
+    }
+
+    .cloud-b {
+      background-image: url("/assets/img/cloud-b.svg");
+    }
+
+    .cloud-c {
+      background-image: url("/assets/img/cloud-c.svg");
     }
 
     //class animate nuange
@@ -345,6 +445,5 @@ body {
 
 
   }
-
 
 }

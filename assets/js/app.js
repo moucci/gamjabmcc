@@ -1,17 +1,4 @@
 /**
- * @import class game
- */
-import Game from './game.js';
-
-/**
- * Get $element dron
- * @type {Element}
- */
-const $dragon = document.querySelector("#dragon");
-let game = new Game();
-
-
-/**
  * methode to hide html element
  * add function hide to prototype htmlelement
  */
@@ -28,6 +15,147 @@ HTMLElement.prototype.show = function (param = 'block') {
     this.style.display = param;
     return this
 }
+
+/**
+ * Methode generate unique id
+ * @param length
+ * @return {string}
+ */
+function  randomId  (length = 6) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+};
+
+
+/**
+ * @import class game
+ */
+import Game from './game.js';
+
+
+/**
+ * function qui permet de mettre a jour le player dans le storage
+ */
+function updateUserInStorage() {
+    localStorage.player = JSON.stringify(player);
+}
+
+/**
+ * function qui permet de mettre a jour le player dans le storage
+ */
+function updateScoreInStorage(scores) {
+    localStorage.scores = JSON.stringify(scores);
+}
+
+/**
+ * @player : {}
+ */
+let player;
+
+/**
+ * @scores : {}
+ */
+let scores;
+
+/**
+ * get player in storage
+ * @type {Object}
+ */
+let scoresInStorage = localStorage.getItem('scores');
+
+/**
+ * get player in storage
+ * @type {Object}
+ */
+let playerInStorage = localStorage.getItem('player');
+
+/**
+ * définir lists par defaut
+ * qui se trouve dans le storage ou cree un nouveau
+ */
+if (scoresInStorage === null) {
+    //list  of user empty
+    scores = [];
+} else scores = JSON.parse(scoresInStorage);
+
+
+/**
+ * définir le jouer par defaut
+ * qui se trouve dans le storage ou cree un nouveau
+ */
+if (playerInStorage === null) {
+    //login  of user
+    player = {
+        name: "anonyme",
+        score: '0',
+        id : randomId()
+    }
+    //save data in storage
+    updateUserInStorage();
+} else
+    player = JSON.parse(playerInStorage);
+
+
+scores.push(player);
+updateScoreInStorage(scores) ;
+
+
+//if we have data display las score
+let lastScore;
+
+/**
+ * Methode to trier by DESC
+ * @param ar
+ * @return {*}
+ */
+function sortByScoreDescending(ar) {
+    return ar.sort((a, b) => b.score - a.score);
+}
+//trier
+let sortedPlayers = sortByScoreDescending(scores);
+//if we have score push it to el
+if(sortedPlayers  && sortedPlayers[0].score > 0)
+    document.querySelector('.last-score').innerText = 'Score à battre: '+sortedPlayers[0].score ;
+
+
+/**
+ * get element INPUT for name player
+ * @type {Element}
+ */
+let $input = document.querySelector("#login");
+//set player name in input
+$input.value = player.name;
+
+/**
+ * get btn element  edit name
+ * @type {Element}
+ */
+const btnVld = document.querySelector(".btn-submit");
+btnVld.addEventListener("click", function () {
+    let $input = document.querySelector("#login");
+    let $btnPlay = document.querySelector(".form .btn-play");
+    if (!/^.{1,50}$/.test($input.value)) {
+        $btnPlay.hide();
+        alert('Attention : Le champ de login est obligatoire et doit contenir entre 1 et 50 caractères.');
+        return false;
+    }
+    player.name = $input.value;
+    $btnPlay.show();
+});
+
+
+/**
+ * Get $element dron
+ * @type {Element}
+ */
+const $dragon = document.querySelector("#dragon");
+let game = new Game();
+
 
 /**
  * Genarate random size
@@ -83,8 +211,12 @@ for (let i = 1; i <= numClouds; i++) {
     cloud.style.left = `${x}px`;
     cloud.classList.add(`cloud-${cloudType}`, 'cloud-animate');
     document.querySelector('#game').appendChild(cloud);
+    //for home
+    if (i < 30) {
+        let clone = cloud.cloneNode();
+        document.querySelector('#home').appendChild(clone);
+    }
 }
-
 
 /**
  * bind btn play
@@ -113,9 +245,20 @@ document.querySelectorAll('.btn-home').forEach(function ($el) {
 /**
  * bind btn next to change level
  */
-document.querySelector('.btn-next').addEventListener("click" , ()=>{
+document.querySelector('.btn-next').addEventListener("click", () => {
     document.querySelector("#win").hide();
     document.querySelector("#game").show();
-    game.start(game.difficulty+0.20) ;
+
+    //update score
+    player.score = game.score ;
+    let listStorage = JSON.parse(localStorage.scores);
+    listStorage.forEach((value, k)=>{
+        if(value.id === value.id){
+           listStorage[k].score = player.score ;
+        }
+    });
+    localStorage.scores = JSON.stringify(listStorage) ;
+    game.start(game.difficulty + 0.5);
+
 });
 

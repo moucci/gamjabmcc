@@ -101,7 +101,7 @@ export default class Game {
     /**
      * @maxTime : maximum time limit per seconde
      */
-    maxTime = 10;
+    maxTime = 30;
 
     /**
      * @countTime : Number => seconde number under timer graph
