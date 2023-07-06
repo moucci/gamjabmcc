@@ -1,6 +1,6 @@
 # DragonSky
 
-Bienvenue dans DragonSky, un jeu palpitant où vous incarnez un dragon devant survivre à une pluie de météorites ! 
+Bienvenue dans DragonSky, un jeu palpitant où vous incarnez un dragon devant survivre à une pluie de météorites !
 
 
 Votre but est de survivre et d'éviter les obstacles pendant 30 secondes. Une fois ce délai écoulé, le niveau de difficulté augmentera, mais vous conserverez vos points de vie et votre score du niveau précédent.
