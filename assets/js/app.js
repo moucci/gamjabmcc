@@ -21,7 +21,7 @@ HTMLElement.prototype.show = function (param = 'block') {
  * @param length
  * @return {string}
  */
-function  randomId  (length = 6) {
+function randomId(length = 6) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     const charactersLength = characters.length;
@@ -74,15 +74,6 @@ let scoresInStorage = localStorage.getItem('scores');
  */
 let playerInStorage = localStorage.getItem('player');
 
-/**
- * définir lists par defaut
- * qui se trouve dans le storage ou cree un nouveau
- */
-if (scoresInStorage === null) {
-    //list  of user empty
-    scores = [];
-} else scores = JSON.parse(scoresInStorage);
-
 
 /**
  * définir le jouer par defaut
@@ -93,7 +84,7 @@ if (playerInStorage === null) {
     player = {
         name: "anonyme",
         score: '0',
-        id : randomId()
+        id: randomId()
     }
     //save data in storage
     updateUserInStorage();
@@ -101,12 +92,16 @@ if (playerInStorage === null) {
     player = JSON.parse(playerInStorage);
 
 
-scores.push(player);
-updateScoreInStorage(scores) ;
-
-
-//if we have data display las score
-let lastScore;
+/**
+ * définir lists par defaut
+ * qui se trouve dans le storage ou cree un nouveau
+ */
+if (scoresInStorage === null) {
+    //list  of user empty
+    scores = [];
+    scores.push(player)
+    updateScoreInStorage(scores)
+} else scores = JSON.parse(scoresInStorage);
 
 /**
  * Methode to trier by DESC
@@ -116,11 +111,12 @@ let lastScore;
 function sortByScoreDescending(ar) {
     return ar.sort((a, b) => b.score - a.score);
 }
+
 //trier
 let sortedPlayers = sortByScoreDescending(scores);
 //if we have score push it to el
-if(sortedPlayers  && sortedPlayers[0].score > 0)
-    document.querySelector('.last-score').innerText = 'Score à battre: '+sortedPlayers[0].score ;
+if (sortedPlayers.length > 0 && sortedPlayers[0].score > 0)
+    document.querySelector('.last-score').innerText = 'Score à battre: ' + sortedPlayers[0].score;
 
 
 /**
@@ -223,7 +219,9 @@ for (let i = 1; i <= numClouds; i++) {
  */
 document.querySelectorAll('.btn-play').forEach(function ($el) {
     $el.addEventListener("click", function () {
-        document.querySelector("#home").hide();
+        document.querySelectorAll("section").forEach(function ($el) {
+            $el.hide();
+        });
         document.querySelector("#game").show();
         game.start(1);
     })
@@ -233,12 +231,21 @@ document.querySelectorAll('.btn-play').forEach(function ($el) {
  * bind btn to home
  */
 document.querySelectorAll('.btn-home').forEach(function ($el) {
+
     $el.addEventListener("click", function () {
         document.querySelectorAll("section").forEach(function ($el) {
             $el.hide();
         });
+
         document.querySelector("#home").show();
-        // game.start();
+        let scores  = JSON.parse(localStorage.scores);
+        //trier
+        let sortedPlayers = sortByScoreDescending(scores);
+        //if we have score push it to el
+        if (sortedPlayers.length > 0 && sortedPlayers[0].score > 0)
+            document.querySelector('.last-score').innerText = 'Score à battre: ' + sortedPlayers[0].score;
+
+
     })
 });
 
@@ -248,17 +255,7 @@ document.querySelectorAll('.btn-home').forEach(function ($el) {
 document.querySelector('.btn-next').addEventListener("click", () => {
     document.querySelector("#win").hide();
     document.querySelector("#game").show();
-
-    //update score
-    player.score = game.score ;
-    let listStorage = JSON.parse(localStorage.scores);
-    listStorage.forEach((value, k)=>{
-        if(value.id === value.id){
-           listStorage[k].score = player.score ;
-        }
-    });
-    localStorage.scores = JSON.stringify(listStorage) ;
     game.start(game.difficulty + 0.5);
-
 });
+
 
