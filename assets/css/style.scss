@@ -516,6 +516,20 @@ body {
 
         }
 
+        ul{
+          padding-left: 50px  ;
+          color: white;
+          font-weight: bold;
+          .name{
+            margin-right: 40px;
+          }
+
+          .name, .score{
+            font-size: 24px;
+
+          }
+        }
+
       }
 
     }

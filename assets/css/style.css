@@ -504,6 +504,17 @@ body main section#list-score .card .header {
 body main section#list-score .card .header h1 {
   text-align: center;
 }
+body main section#list-score .card ul {
+  padding-left: 50px;
+  color: white;
+  font-weight: bold;
+}
+body main section#list-score .card ul .name {
+  margin-right: 40px;
+}
+body main section#list-score .card ul .name, body main section#list-score .card ul .score {
+  font-size: 24px;
+}
 body main .cloud-a,
 body main .cloud-b,
 body main .cloud-c {

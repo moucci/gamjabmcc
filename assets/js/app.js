@@ -261,19 +261,24 @@ function listScoreOnView() {
 
     let container = document.querySelector('#list-score ul');
     container.innerHTML = '';
-    sortedPlayers.forEach((value) => {
-        let $li = document.createElement('li');
-        let $spanName = document.createElement('span');
-        $spanName.classList.add('name');
-        let $spanScore= document.createElement('span');
-        $spanScore.classList.add('score');
 
-        $li.insertAdjacentElement($spanName);
-        $li.insertAdjacentElement($spanScore);
+    sortedPlayers.forEach((value, key) => {
+        if (key < 7) {
+            let $li = document.createElement('li');
+            let $spanName = document.createElement('span');
+            $spanName.classList.add('name');
+            $spanName.textContent = value.name + ' : '; // assuming `value` is an object with a `name` property
 
-        container.insertAdjacentElement($li)
+            let $spanScore = document.createElement('span');
+            $spanScore.classList.add('score');
+            $spanScore.textContent = value.score; // assuming `value` is an object with a `score` property
 
-    })
+            $li.appendChild($spanName);
+            $li.appendChild($spanScore);
+            container.appendChild($li);
+        }
+
+    });
 }
 
 document.querySelectorAll('.btn-list').forEach(function ($el) {
